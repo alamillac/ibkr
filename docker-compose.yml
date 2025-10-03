@@ -1,0 +1,23 @@
+name: test-trader
+services:
+  ib-gateway:
+    restart: unless-stopped
+    build:
+      context: ./stable
+      tags:
+        - "ghcr.io/gnzsnz/ib-gateway:stable"
+    image: ghcr.io/gnzsnz/ib-gateway:stable
+    environment:
+      TWS_USERID: ${TWS_USERID}
+      TWS_PASSWORD_FILE: /run/secrets/tws_password
+      TRADING_MODE: ${TRADING_MODE:-paper}
+      READ_ONLY_API: ${READ_ONLY_API:-}
+      BYPASS_WARNING: yes
+    secrets:
+      - tws_password
+    ports:
+      - "127.0.0.1:4001:4003"
+      - "127.0.0.1:4002:4004"
+secrets:
+  tws_password:
+    file: ./pass/tws_password.txt
