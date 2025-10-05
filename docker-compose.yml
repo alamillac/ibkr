@@ -5,8 +5,8 @@ services:
     build:
       context: ./stable
       tags:
-        - "ghcr.io/gnzsnz/ib-gateway:10.30.1t"
-    image: ghcr.io/gnzsnz/ib-gateway:10.30.1t
+        - "ghcr.io/gnzsnz/ib-gateway:10.37.1l"
+    image: ghcr.io/gnzsnz/ib-gateway:10.37.1l
     environment:
       TWS_USERID: ${TWS_USERID}
       TWS_PASSWORD_FILE: /run/secrets/tws_password
@@ -18,13 +18,11 @@ services:
       TWOFA_EXIT_INTERVAL: ${TWOFA_EXIT_INTERVAL:-60}
       TIME_ZONE: ${TIME_ZONE:-Etc/UTC}
       BYPASS_WARNING: yes
-      VNC_SERVER_PASSWORD: ${VNC_SERVER_PASSWORD:-}
     secrets:
       - tws_password
     ports:
       - "127.0.0.1:4001:4003"
       - "127.0.0.1:4002:4004"
-      - "127.0.0.1:5900:5900"
 secrets:
   tws_password:
     file: ./pass/tws_password.txt

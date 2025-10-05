@@ -1,2 +1,6 @@
 yfinance==0.2.53
-ib-insync==0.9.86
+ib_async==2.0.1
+
+# Required by ibapi
+#setuptools==80.9.0
+#protobuf==5.29.3
